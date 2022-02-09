@@ -2,43 +2,45 @@ package logicalPrograme;
 import java.util.Scanner;
 
 public class StopWatch {
-    public static void main(String[] args)
-    {
-        //Variable Declration
-        long start = 0, stop = 0;
+    /*
+     * static variables for storing start and end time
+     */
+    static double start = 0, stop = 0;
 
-        //Scanner object for user input
-        Scanner sc = new Scanner(System.in);
+    /**
+     * Function to put start time and print it
+     */
+    static void startTime() {
+        start = System.currentTimeMillis();
+        System.out.println("started at " + start);
+    }
 
-        //Showing Stopwatch options to user
-        while(true) {
-            System.out.println("1. Start StopWatch \n2. Stop StopWatch \n3. Exit");
+    /**
+     * function to put stop time and print it
+     */
+    static void stopTime() {
+        stop = System.currentTimeMillis();
+        System.out.println("stopped at " + stop);
+    }
 
-            System.out.println("Enter your Choice :");
-            int choice = sc.nextInt();
+    /**
+     * function to calculate elapsed time and print it
+     */
+    static void elapsedTime() {
+        System.out.println("elapsed time is " + (stop - start) / 1000);
+    }
 
-            switch (choice) {
-                case 1 -> {
-                    //Getting the Starting Time of Stopwatch from system in nanoseconds
-                    start = System.nanoTime();
-                    System.out.println("Start Time :" + start);
-                }
-                case 2 -> {
-                    //Calculating the Seconds to be lapsed by starting and ending time
-                    stop = System.nanoTime();
-                    long sec = ((stop - start) / 1000000000);
-                    System.out.println("edn Time :" + stop);
-                    int min = (int) sec / 60;
-                    int hr = min / 60;
-                    System.out.println("Elapsed Time is " + hr + ":" + min + ":" + sec);
-                }
-            }
-
-            if(choice >= 3) {
-                System.out.println("Closing the Stopwatch.");
-                break;
-            }
-        }
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+        System.out.println("enter 1 to start");
+        s.next();
+        startTime();
+        System.out.println("enter to stop");
+        s.next();
+        stopTime();
+        elapsedTime();
     }
 }
+
+
 
